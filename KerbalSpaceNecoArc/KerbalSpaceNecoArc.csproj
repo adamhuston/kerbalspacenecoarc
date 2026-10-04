@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>KerbalSpaceNecoArc</AssemblyName>
+    <RootNamespace>KerbalSpaceNecoArc</RootNamespace>
+    <Version>1.0.0</Version>
+    <TargetFramework>net471</TargetFramework>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+
+    <!-- KSP install location, used only to reference the stock managed
+         assemblies at build time. Point at your Kerbal Space Program folder by
+         setting the KSPDIR environment variable, or pass -p:KSPRoot=... to the
+         build. Nothing machine-specific is committed. -->
+    <KSPRoot Condition="'$(KSPRoot)' == ''">$(KSPDIR)</KSPRoot>
+    <KSPManaged>$(KSPRoot)\KSP_x64_Data\Managed</KSPManaged>
+  </PropertyGroup>
+
+  <Target Name="CheckKSPRoot" BeforeTargets="BeforeBuild">
+    <Error Condition="'$(KSPRoot)' == '' Or !Exists('$(KSPManaged)')"
+           Text="KSP managed assemblies not found. Set the KSPDIR environment variable (or pass -p:KSPRoot=&quot;C:\path\to\Kerbal Space Program&quot;) to your KSP install. Looked in: $(KSPManaged)" />
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="System">
+      <HintPath>$(KSPManaged)\System.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(KSPManaged)\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(KSPManaged)\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(KSPManaged)\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(KSPManaged)\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>$(KSPManaged)\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>$(KSPManaged)\System.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

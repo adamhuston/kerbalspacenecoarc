@@ -1,0 +1,28 @@
+*.userprefs
+*.dll
+bin/
+obj/
+dumps/
+__pycache__
+
+# Regeneratable model-converter artifacts
+ModelConverter/out/
+ModelConverter/viewer/data.js
+ModelConverter/viewer/neco_texture.png
+
+# Release packaging output
+dist/
+
+# Dev-only raw source archive (the extracted .obj is kept for regenerating the
+# head; the zip is just a redundant copy of it and is not needed to build/install)
+neco-arc-melty-bloodtype-lumina/source/*.zip
+
+decompiled
+materials
+models
+.idea
+viewer/data.js
+venv
+.venv/
+.vscode/
+GameData/
